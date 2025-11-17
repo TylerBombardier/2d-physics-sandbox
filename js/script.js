@@ -1,35 +1,27 @@
 import * as PIXI from 'pixi.js';
 import Matter from 'matter-js';
 
+//Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World } = Matter;
+const { Application } = PIXI;
 
-let engine = Engine.create();
-let world = engine.world;
+let engine = Engine.create(); //Engine creation
+let world = engine.world; //World creation
 
+/**
+ * Creating the PIXI canvas
+ */
 let container = document.getElementById("sim-area");
 let bounds = container.getBoundingClientRect();
 
+const app = new Application();
+await app.init({
+    width: bounds.width,
+    height: bounds.height,
+    backgroundColor: new PIXI.Color('white'),
+    antialias: true,
+    resolution: 1,
+    preference: 'webgl'
+})
 
-let render = Render.create({
-    element: document.getElementById("sim-area"),
-    engine: engine,
-    options: {
-        width: bounds.width,
-        height: bounds.height,
-        wireframes: false,
-        background: "#222"
-    }
-});
-
-Render.run(render);
-
-let runner = Runner.create();
-Runner.run(runner, engine);
-
-let ground = Bodies.rectangle(window.innerWidth/2,window.innerHeight-50,window.innerWidth, 100, { isStatic: true});
-World.add(world, ground);
-
-for(let i = 0; i < 5; i++){
-    let box = Bodies.rectangle(400 + i*60, 100, 50, 50, {restitution: 0.7});
-    World.add(world, box);
-}
+container.appendChild(app.canvas);
