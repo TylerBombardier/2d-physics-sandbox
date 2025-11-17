@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "matter-js": "^0.20.0",
+    "pixi.js": "^8.14.1"
+  },
+  "devDependencies": {
+    "vite": "^7.2.2"
+  }
+}

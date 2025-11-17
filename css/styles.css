@@ -1,16 +1,26 @@
-#container{
-    display: flex;
+#container {
+    position: relative;
     height: 100vh;
     width: 100vw;
 }
 
-#left-ui-panel{
+#left-ui-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 250px;
-    background-color: lightgray;
-    border-right: black solid 2px;
+    height: 100%;
+    background-color: lightgrey;
+    z-index: 10;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-#sim-area{
-    flex: 1;
-    background-color: whitesmoke;
+#sim-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
