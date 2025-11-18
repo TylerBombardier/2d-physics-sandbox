@@ -1,4 +1,5 @@
 import Matter from 'matter-js';
+import TogglePanel from './component/TogglePanel';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite } = Matter;
@@ -6,9 +7,6 @@ const { Engine, Render, Runner, Bodies, World, Composite } = Matter;
 let engine = Engine.create(); //Engine creation
 let world = engine.world; //World creation
 
-/**
- * Creating the PIXI canvas
- */
 let sceneContainer = document.getElementById("sim-area");
 let bounds = sceneContainer.getBoundingClientRect();
 
@@ -37,3 +35,5 @@ Render.setPixelRatio(render, window.devicePixelRatio);
 let runner = Runner.create();
 
 Runner.run(runner, engine);
+
+let togglePanel = new TogglePanel("#left-ui-panel","#ui-handle");

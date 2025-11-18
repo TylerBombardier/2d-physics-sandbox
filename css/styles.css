@@ -4,6 +4,10 @@
     width: 100vw;
 }
 
+/*
+UI Panel Styling
+*/
+
 #left-ui-panel {
     position: absolute;
     top: 0;
@@ -14,7 +18,27 @@
     z-index: 10;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    transition: transform 0.5s cubic-bezier( 0.00,0.00, 0.20,1.00 );
 }
+
+#ui-handle {
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 80px;
+    background: lightgrey;
+    cursor: pointer;
+}
+
+#left-ui-panel.closed{
+    transform: translateX(-250px);
+}
+
+/*
+Sim Area Styling
+*/
 
 #sim-area {
     position: absolute;
