@@ -1,5 +1,5 @@
 import Matter from 'matter-js';
-import TogglePanel from './component/TogglePanel';
+import UIToggle from './component/TogglePanel';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite } = Matter;
@@ -36,4 +36,5 @@ let runner = Runner.create();
 
 Runner.run(runner, engine);
 
-let togglePanel = new TogglePanel("#left-ui-panel","#ui-handle");
+//Handles toggling the opening and closing of the UI
+let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
