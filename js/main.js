@@ -1,5 +1,5 @@
 import Matter from 'matter-js';
-import UIToggle from './component/TogglePanel';
+import UIToggle from './components/ui/UIToggle';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite } = Matter;
