@@ -1,5 +1,6 @@
 import Matter from 'matter-js';
 import UIToggle from './components/ui/UIToggle';
+import { Camera } from './components/world/Camera';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite } = Matter;
@@ -11,14 +12,15 @@ let sceneContainer = document.getElementById("sim-area");
 let bounds = sceneContainer.getBoundingClientRect();
 
 let render = Render.create({
-  element: sceneContainer,
-  engine: engine,
-  options: {
+element: sceneContainer,
+engine: engine,
+options: {
     width: bounds.width,
     height: bounds.height,
     wireframes: false,
     background: 'transparent',
-  }
+    hasBounds: true,
+}
 });
 
 // create two boxes and a ground
@@ -38,3 +40,5 @@ Runner.run(runner, engine);
 
 //Handles toggling the opening and closing of the UI
 let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
+
+let camera = new Camera(render);

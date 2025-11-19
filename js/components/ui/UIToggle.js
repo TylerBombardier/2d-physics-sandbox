@@ -3,17 +3,27 @@
  */
 export default class UIToggle{
 
-    constructor(panelElement, toggleElement, closedClassName = "closed"){
+    constructor(panelElement, toggleElement, closedClassName = "closed", openedClassName = "open"){
         this.panelElement = document.querySelector(panelElement); //Applies class to this element
         this.toggleElement = document.querySelector(toggleElement); //Applies click event listener to this element
         this.closedClassName = closedClassName;
+        this.openedClassNamed = openedClassName;
 
         if(!this.panelElement || !this.toggleElement){
-            throw new Error("TogglePanel: Panel or Toggle not found.")
+            throw new Error("UIToggle: Panel or Toggle not found.")
         }
 
         //Checks if it already has the closed class name and adjusts open value accordingly
         this.isOpen = !this.panelElement.classList.contains(this.closedClassName);
+
+        switch(this.isOpen){
+            case true:
+                this.open();
+                break;
+            case false:
+                this.close();
+                break;
+        }
 
         this.toggleElement.addEventListener("click", () => this.toggle());
     }
@@ -21,11 +31,13 @@ export default class UIToggle{
     //Open Panel
     open(){
         this.panelElement.classList.remove(this.closedClassName);
+        this.panelElement.classList.add(this.openedClassNamed);
         this.isOpen = true;
     }
 
     //Close Panel
     close(){
+        this.panelElement.classList.remove(this.openedClassNamed);
         this.panelElement.classList.add(this.closedClassName);
         this.isOpen = false;
     }
