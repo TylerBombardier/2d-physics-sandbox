@@ -9,8 +9,8 @@ export class Sandbox{
         this.camera = camera;
     }
 
+    // Converts the screen coordinates into canvas coordinates
     screenToWorld(screenCoords) {
-        // Converts the screen coordinates into canvas coordinates
         let bounds = this.camera.render.bounds;
         let canvas = this.camera.render.canvas.getBoundingClientRect();
 
@@ -23,9 +23,7 @@ export class Sandbox{
         };
     }
 
-
-
+    // Converts world coordinates into canvas cordinates
     worldToScreen(worldCords){
-        // Converts world coordinates into canvas cordinates
     }
 }

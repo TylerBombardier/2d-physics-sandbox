@@ -46,6 +46,9 @@ let camera = new Camera(render);
 
 let sandbox = new Sandbox(camera);
 
+
+camera.pan(100,100);
+
 document.body.addEventListener("click",e=>{
     let worldPos = sandbox.screenToWorld({x: e.clientX, y: e.clientY});
     let rect = new Bodies.rectangle(worldPos.x,worldPos.y,50,50);
@@ -59,4 +62,4 @@ document.body.addEventListener("click",e=>{
     console.log("World center:", worldCenter);
     console.log("Clicked world position:", worldPos);
 
-    })
+})
