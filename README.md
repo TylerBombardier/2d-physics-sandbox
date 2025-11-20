@@ -1,3 +1,3 @@
 # Simulation Sandbox
 
-A Matter.js simulation sandbox using PIXI renderer
+A Matter.js simulation sandbox
