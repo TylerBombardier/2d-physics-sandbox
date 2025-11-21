@@ -2,6 +2,7 @@ import Matter from 'matter-js';
 import UIToggle from './components/ui/UIToggle';
 import { Camera } from './components/world/Camera';
 import { Sandbox } from './components/world/Sandbox';
+import { InputController } from './components/input/InputController';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite } = Matter;
@@ -47,8 +48,9 @@ let camera = new Camera(render);
 
 let sandbox = new Sandbox(camera);
 
+let input = new InputController();
+
 document.body.addEventListener("click",e=>{
-    console.log("fuc",e.target,canvas);
     if(e.target == canvas[0]){
         let worldPos = sandbox.screenToWorld({x: e.clientX, y: e.clientY});
         let rect = new Bodies.rectangle(worldPos.x,worldPos.y,50,50);
@@ -59,36 +61,28 @@ document.body.addEventListener("click",e=>{
             x: (bounds.min.x + bounds.max.x) / 2,
             y: (bounds.min.y + bounds.max.y) / 2
         };
-        console.log("World center:", worldCenter);
         console.log("Clicked world position:", worldPos);
-
     }
-
 })
 
-let keys = {}
+function updateGame(){
+    let panSpeed = 20;
+    let zoomSpeed = 30;
 
-document.body.addEventListener("keydown", e => {
-    keys[e.key] = true;
-})
+    if (input.isDown("w")) camera.targetY -= panSpeed;
+    if (input.isDown("s")) camera.targetY += panSpeed;
+    if (input.isDown("a")) camera.targetX -= panSpeed;
+    if (input.isDown("d")) camera.targetX += panSpeed;
 
-document.body.addEventListener("keyup", e => {
-    keys[e.key] = false;
-})
+    let scroll = input.getScroll();
+    if (scroll !== 0){
+        scroll > 0 ? camera.zoomOut(zoomSpeed) : camera.zoomIn(zoomSpeed);
+    }
 
-function update(){
-    let speed = 10;
-
-    if(keys["w"]){
-        camera.pan(0, -speed);
-    }
-    if(keys["a"]){
-        camera.pan(-speed,0);
-    }
-    if(keys["s"]){
-        camera.pan(0,speed);
-    }
-    if(keys["d"]){
-        camera.pan(speed,0);
-    }
+    camera.update();
+    input.endFrame();
 }
+
+Matter.Events.on(runner, "afterUpdate", () => {
+    updateGame();
+})

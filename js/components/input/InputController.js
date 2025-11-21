@@ -8,7 +8,7 @@ export class InputController{
         this.scrollDelta = 0;
 
         document.addEventListener("keydown", e => this.keys[e.key] = true);
-        document.addEventListener("keyup", e => this.keys[e.key] = true);
+        document.addEventListener("keyup", e => this.keys[e.key] = false);
         document.addEventListener("wheel", e => this.scrollDelta = e.deltaY);
     }
 
@@ -16,20 +16,11 @@ export class InputController{
         return this.keys[key];
     }
 
-    update(){
-        let speed = 10;
+    getScroll(){
+        return this.scrollDelta;
+    }
 
-        if(keys["w"]){
-            camera.pan(0, -speed);
-        }
-        if(keys["a"]){
-            camera.pan(-speed,0);
-        }
-        if(keys["s"]){
-            camera.pan(0,speed);
-        }
-        if(keys["d"]){
-            camera.pan(speed,0);
-        }
+    endFrame(){
+        this.scrollDelta = 0;
     }
 }

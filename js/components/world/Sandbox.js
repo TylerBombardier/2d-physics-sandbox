@@ -11,8 +11,8 @@ export class Sandbox{
 
     // Converts the screen coordinates into canvas coordinates
     screenToWorld(screenCoords) {
-        let bounds = this.camera.getCameraBounds();
-        let canvas = this.camera.getCanvasBounds();
+        let bounds = this.camera.bounds;
+        let canvas = this.camera.canvas.getBoundingClientRect();
 
         let scaleX = (bounds.max.x - bounds.min.x) / canvas.width;
         let scaleY = (bounds.max.y - bounds.min.y) / canvas.height;

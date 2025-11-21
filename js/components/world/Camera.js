@@ -13,24 +13,23 @@ export class Camera{
         this.defaultZoomHeight = this.camHeight;
         this.deftaultZoomWidth = this.camWidth;
 
-        this.targetHeight = this.camHeight;
+        // Target positions for smooth panning
+        this.targetX = this.bounds.min.x;
+        this.targetY = this.bounds.min.y;
 
-        this.zoomIncrement = 200;
+        // Target positions for smooth zooming
+        this.targetZoom = this.camHeight;
+
         this.panLerp = 0.15;
         this.zoomLerp = 0.15;
+        this.zoomCenter = null;
+        this.minZoom = this.defaultZoomHeight / 5;
+        this.maxZoom = this.defaultZoomHeight * 5;
     }
 
     update(){
-        this.handlePanning();
+        this.handleSmoothPanning();
         this.handleSmoothZoom();
-    }
-
-    handleSmoothPanning(){
-
-    }
-
-    handleSmoothZoom(){
-
     }
 
     get camHeight(){
@@ -39,6 +38,21 @@ export class Camera{
 
     get camWidth(){
         return this.bounds.max.x - this.bounds.min.x;
+    }
+
+    get camCenterX() {
+    return (this.bounds.min.x + this.bounds.max.x) / 2;
+}
+
+    get camCenterY() {
+        return (this.bounds.min.y + this.bounds.max.y) / 2;
+    }
+
+    handleSmoothPanning(){
+        let dx = (this.targetX - this.bounds.min.x) * this.panLerp;
+        let dy = (this.targetY - this.bounds.min.y) * this.panLerp;
+
+        this.pan(dx,dy);
     }
 
     pan(dx,dy){
@@ -52,29 +66,32 @@ export class Camera{
         // console.log("Panned "+(dy >= 0 ? "Down" : "Up")+" by "+Math.abs(dy));
     }
 
+    handleSmoothZoom() {
+        let diff = this.targetZoom - this.camHeight;
+        let step = diff * this.zoomLerp;
+        this.setZoom(step);
+    }
+
     zoomIn(zoomAmount = this.zoomIncrement){
-        this.setZoom(zoomAmount*-1);
+        this.targetZoom -= zoomAmount;
+        if(this.targetZoom < this.minZoom) this.targetZoom = this.minZoom;
     }
 
     zoomOut(zoomAmount = this.zoomIncrement){
-        this.setZoom(zoomAmount);
+        this.targetZoom += zoomAmount;
+        if(this.targetZoom > this.maxZoom) this.targetZoom = this.maxZoom;
     }
 
     setZoom(zoomAmount) {
-        // Calculate the desired height based on the increment amount
         let newHeight = this.camHeight + zoomAmount;
-
-        // Adjust the width accordingly using the aspect ratio
         let newWidth = newHeight * this.aspectRatio;
 
-        // Find the difference between those two heights to calculate the amount to zoom in or out.
-        let heightDiff = newHeight - this.camHeight;
-        let widthDiff = newWidth - this.camWidth;
+        let deltaHeight = newHeight - this.camHeight;
+        let deltaWidth = newWidth - this.camWidth;
 
-        // Change the render bounds by the difference and center it
-        this.bounds.min.x -= widthDiff / 2;
-        this.bounds.max.x += widthDiff / 2;
-        this.bounds.min.y -= heightDiff / 2;
-        this.bounds.max.y += heightDiff / 2;
+        this.bounds.min.x -= deltaWidth / 2;
+        this.bounds.max.x += deltaWidth / 2;
+        this.bounds.min.y -= deltaHeight / 2;
+        this.bounds.max.y += deltaHeight / 2;
     }
 }
