@@ -10,6 +10,7 @@ export class InputController{
         document.addEventListener("keydown", e => this.keys[e.key] = true);
         document.addEventListener("keyup", e => this.keys[e.key] = false);
         document.addEventListener("wheel", e => this.scrollDelta = e.deltaY);
+
     }
 
     isDown(key){
