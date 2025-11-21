@@ -1,5 +1,5 @@
 /**
- * The sandbox that contains the Engine, World, and Render.
+ * The sandbox that contains the engine, the world, and camera.
  * All positional data pass through he to be normalized.
  */
 
@@ -11,8 +11,8 @@ export class Sandbox{
 
     // Converts the screen coordinates into canvas coordinates
     screenToWorld(screenCoords) {
-        let bounds = this.camera.render.bounds;
-        let canvas = this.camera.render.canvas.getBoundingClientRect();
+        let bounds = this.camera.getCameraBounds();
+        let canvas = this.camera.getCanvasBounds();
 
         let scaleX = (bounds.max.x - bounds.min.x) / canvas.width;
         let scaleY = (bounds.max.y - bounds.min.y) / canvas.height;

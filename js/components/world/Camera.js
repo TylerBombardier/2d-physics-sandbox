@@ -6,22 +6,42 @@ export class Camera{
 
     constructor(render){
         this.render = render;
+        this.canvas = this.render.canvas;
 
-        this.minX = render.bounds.min.x;
-        this.minY = render.bounds.min.y;
-        this.maxX = render.bounds.max.x;
-        this.maxY = render.bounds.max.y;
-
-        this.camHeight = this.maxY - this.minY;
-        this.camWidth = this.maxX- this.minX;
+        this.camHeight = this.getMaxY() - this.getMinY();
+        this.camWidth = this.getMaxX() - this.getMinX();
         
-        this.aspectRatio = this.camWidth / this.camHeight;
-        this.defaultZoomHeight = this.camHeight;
-        this.deftaultZoomWidth = this.camWidth;
+        this.aspectRatio = this.getCameraWidth() / this.getCameraHeight();
+        this.defaultZoomHeight = this.getCameraHeight();
+        this.deftaultZoomWidth = this.getCameraHeight();
         this.zoomIncrement = 200;
 
         this.setupZoom();
         this.setupPanning();
+    }
+
+    getCanvasHeight(){
+        return this.canvas.height;
+    }
+
+    getCanvasWidth(){
+        return this.canvas.width;
+    }
+
+    getCameraHeight(){
+        return this.getMaxY() - this.getMinY();
+    }
+
+    getCameraWidth(){
+        return this.getMaxX() - this.getMinX();
+    }
+
+    getCameraBounds(){
+        return this.render.bounds;
+    }
+
+    getCanvasBounds(){
+        return this.render.canvas.getBoundingClientRect();
     }
 
     getMinX(){
@@ -57,7 +77,7 @@ export class Camera{
     }
 
     setupPanning(){
-        //Setup event listeners for panning
+        // Setup event listeners for panning
     }
 
     pan(dx,dy){
@@ -72,7 +92,7 @@ export class Camera{
     }
 
     setupZoom(){
-        // TODO Add smoothing
+        // Setup event listeners for zooming
         document.body.addEventListener("wheel", e => {
             e.deltaY < 0 ? this.zoomIn() : this.zoomOut();
             console.log("Zoom " + ((e.deltaY < 0) ? "in" : "out") + " by " + this.zoomIncrement + " pixels");
@@ -89,23 +109,19 @@ export class Camera{
 
     setZoom(zoomAmount) {
         // Calculate the desired height based on the increment amount
-        let newHeight = this.camHeight + zoomAmount;
+        let newHeight = this.getCameraHeight() + zoomAmount;
 
         // Adjust the width accordingly using the aspect ratio
         let newWidth = newHeight * this.aspectRatio;
 
         // Find the difference between those two heights to calculate the amount to zoom in or out.
-        let heightDiff = newHeight - this.camHeight;
-        let widthDiff = newWidth - this.camWidth;
+        let heightDiff = newHeight - this.getCameraHeight();
+        let widthDiff = newWidth - this.getCameraWidth();
 
         // Change the render bounds by the difference and center it
         this.setMinX(this.getMinX()-widthDiff / 2);
         this.setMaxX(this.getMaxX()+widthDiff / 2);
         this.setMinY(this.getMinY()-heightDiff / 2);
         this.setMaxY(this.getMaxY()+heightDiff / 2);
-        
-        // Update the current size
-        this.camHeight = newHeight;
-        this.camWidth = newWidth;
     }
 }

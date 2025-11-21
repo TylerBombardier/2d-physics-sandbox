@@ -10,6 +10,7 @@ let engine = Engine.create(); //Engine creation
 let world = engine.world; //World creation
 
 const sceneContainer = document.getElementById("sim-area");
+const canvas = document.getElementsByTagName("canvas");
 const bounds = sceneContainer.getBoundingClientRect();
 
 let render = Render.create({
@@ -46,20 +47,52 @@ let camera = new Camera(render);
 
 let sandbox = new Sandbox(camera);
 
-
-camera.pan(100,100);
-
 document.body.addEventListener("click",e=>{
-    let worldPos = sandbox.screenToWorld({x: e.clientX, y: e.clientY});
-    let rect = new Bodies.rectangle(worldPos.x,worldPos.y,50,50);
-    Composite.add(world, rect);
+    console.log("fuc",e.target,canvas);
+    if(e.target == canvas[0]){
+        let worldPos = sandbox.screenToWorld({x: e.clientX, y: e.clientY});
+        let rect = new Bodies.rectangle(worldPos.x,worldPos.y,50,50);
+        Composite.add(world, rect);
 
-    const bounds = camera.render.bounds;
-    const worldCenter = {
-        x: (bounds.min.x + bounds.max.x) / 2,
-        y: (bounds.min.y + bounds.max.y) / 2
-    };
-    console.log("World center:", worldCenter);
-    console.log("Clicked world position:", worldPos);
+        const bounds = camera.render.bounds;
+        const worldCenter = {
+            x: (bounds.min.x + bounds.max.x) / 2,
+            y: (bounds.min.y + bounds.max.y) / 2
+        };
+        console.log("World center:", worldCenter);
+        console.log("Clicked world position:", worldPos);
+
+    }
 
 })
+
+let keys = {}
+
+document.body.addEventListener("keydown", e => {
+    keys[e.key] = true;
+})
+
+document.body.addEventListener("keyup", e => {
+    keys[e.key] = false;
+})
+
+function update(){
+    let speed = 10;
+
+    if(keys["w"]){
+        camera.pan(0, -speed);
+    }
+    if(keys["a"]){
+        camera.pan(-speed,0);
+    }
+    if(keys["s"]){
+        camera.pan(0,speed);
+    }
+    if(keys["d"]){
+        camera.pan(speed,0);
+    }
+
+    requestAnimationFrame(update)
+}
+
+update();
