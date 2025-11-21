@@ -91,8 +91,4 @@ function update(){
     if(keys["d"]){
         camera.pan(speed,0);
     }
-
-    requestAnimationFrame(update)
 }
-
-update();
