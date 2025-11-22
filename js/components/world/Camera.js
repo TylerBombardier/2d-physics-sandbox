@@ -14,8 +14,8 @@ export class Camera{
         this.deftaultZoomWidth = this.camWidth;
 
         // Target positions for smooth panning
-        this.targetX = this.bounds.min.x;
-        this.targetY = this.bounds.min.y;
+        this.targetX = this.camCenterX;
+        this.targetY = this.camCenterY;
 
         // Target positions for smooth zooming
         this.targetZoom = this.camHeight;
@@ -41,18 +41,18 @@ export class Camera{
     }
 
     get camCenterX() {
-    return (this.bounds.min.x + this.bounds.max.x) / 2;
-}
+        return (this.bounds.min.x + this.bounds.max.x) / 2;
+    }
 
     get camCenterY() {
         return (this.bounds.min.y + this.bounds.max.y) / 2;
     }
 
     handleSmoothPanning(){
-        let dx = (this.targetX - this.bounds.min.x) * this.panLerp;
-        let dy = (this.targetY - this.bounds.min.y) * this.panLerp;
+        let dx = (this.targetX - this.camCenterX) * this.panLerp;
+        let dy = (this.targetY - this.camCenterY) * this.panLerp;
 
-        this.pan(dx,dy);
+        this.pan(dx, dy);
     }
 
     pan(dx,dy){
@@ -89,9 +89,9 @@ export class Camera{
         let deltaHeight = newHeight - this.camHeight;
         let deltaWidth = newWidth - this.camWidth;
 
-        this.bounds.min.x -= deltaWidth / 2;
-        this.bounds.max.x += deltaWidth / 2;
-        this.bounds.min.y -= deltaHeight / 2;
-        this.bounds.max.y += deltaHeight / 2;
+        this.bounds.min.x -= deltaWidth;
+        this.bounds.max.x += deltaWidth;
+        this.bounds.min.y -= deltaHeight;
+        this.bounds.max.y += deltaHeight;
     }
 }
