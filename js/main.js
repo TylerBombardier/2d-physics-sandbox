@@ -1,4 +1,5 @@
 import Matter from 'matter-js';
+import "@material/web/all";
 import UIToggle from './components/ui/UIToggle';
 import { Camera } from './components/world/Camera';
 import { Sandbox } from './components/world/Sandbox';
@@ -67,7 +68,7 @@ document.body.addEventListener("click",e=>{
 
 function updateGame(){
     let panSpeed = 20;
-    let zoomSpeed = 30;
+    let zoomSpeed = 50;
 
     if (input.isDown("w")) camera.targetY -= panSpeed;
     if (input.isDown("s")) camera.targetY += panSpeed;
