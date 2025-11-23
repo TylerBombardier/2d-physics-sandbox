@@ -1,11 +1,17 @@
 /**
- * The sandbox that contains the engine, the world, and camera.
- * All positional data pass through he to be normalized.
+ * - The sandbox that contains the engine, the world, and camera.
+ * - All positional data passes through he to be normalized.
+ * - Handles the creation, deletion, and updating, of shapes.
+ * - Initalizes scene layout, wall layout, etc.s
  */
+
+import { Bodies, Composite } from 'matter-js';
 
 export class Sandbox{
 
-    constructor(camera = null){
+    constructor(engine, camera){
+        this.engine = engine;
+        this.world = engine.world;
         this.camera = camera;
     }
 
@@ -25,5 +31,18 @@ export class Sandbox{
 
     // Converts world coordinates into canvas cordinates
     worldToScreen(worldCords){
+    }
+
+    // Spawns a rectangle
+    spawnRectangle({x, y}, w, h, options = {}) {
+        let worldPos = this.screenToWorld({ x, y });
+        let rect = Bodies.rectangle(worldPos.x, worldPos.y, w, h, options);
+        Composite.add(this.world, rect);
+        return rect;
+    }
+
+    // Spawn barries
+    spawnBarriers(){
+        
     }
 }
