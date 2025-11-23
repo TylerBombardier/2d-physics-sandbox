@@ -23,7 +23,7 @@ export class Camera{
         this.panLerp = 0.15;
         this.zoomLerp = 0.15;
         this.zoomCenter = null;
-        this.minZoom = this.defaultZoomHeight / 5;
+        this.minZoom = this.defaultZoomHeight;
         this.maxZoom = this.defaultZoomHeight * 5;
     }
 

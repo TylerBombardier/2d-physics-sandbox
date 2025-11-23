@@ -43,6 +43,40 @@ export class Sandbox{
 
     // Spawn barries
     spawnBarriers(){
-        
+        let barrierDistance = 3000;
+        let barrierThickness = 1000;
+        let ground = Bodies.rectangle(
+            (window.innerWidth / 2),
+            window.innerHeight + (barrierThickness / 2),
+            barrierDistance,
+            barrierThickness,
+            {isStatic: true}
+        );
+
+        let leftWall = Bodies.rectangle(
+            (window.innerWidth / 2) - (barrierDistance / 2) - (barrierThickness / 2),
+            window.innerHeight - (barrierDistance / 2),
+            barrierThickness,
+            barrierDistance,
+            { isStatic: true }
+        );
+
+        let rightWall = Bodies.rectangle(
+            (window.innerWidth / 2) + (barrierDistance / 2) + (barrierThickness / 2),
+            window.innerHeight - (barrierDistance / 2),
+            barrierThickness,
+            barrierDistance,
+            { isStatic: true }
+        )
+
+        let ceiling = Bodies.rectangle(
+            (window.innerWidth / 2),
+            window.innerHeight - (barrierThickness / 2) - (barrierDistance),
+            barrierDistance,
+            barrierThickness,
+            {isStatic: true}
+        );
+
+        Composite.add(this.world, [ground, leftWall, rightWall, ceiling]);
     }
 }

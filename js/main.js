@@ -40,16 +40,18 @@ let camera = new Camera(render);
 
 let sandbox = new Sandbox(engine,camera);
 
+sandbox.spawnBarriers();
+
 let input = new InputController();
 
 function updateGame(){
     let panSpeed = 20;
     let zoomSpeed = 100;
 
-    if (input.isDown("w")) camera.targetY -= panSpeed;
-    if (input.isDown("s")) camera.targetY += panSpeed;
-    if (input.isDown("a")) camera.targetX -= panSpeed;
-    if (input.isDown("d")) camera.targetX += panSpeed;
+    if (input.isDown("KeyW")) camera.targetY -= panSpeed;
+    if (input.isDown("KeyS")) camera.targetY += panSpeed;
+    if (input.isDown("KeyA")) camera.targetX -= panSpeed;
+    if (input.isDown("KeyD")) camera.targetX += panSpeed;
 
     let scroll = input.getScroll();
     if (scroll !== 0){
@@ -57,7 +59,9 @@ function updateGame(){
     }
 
     if(input.isClicked(0)){
-        sandbox.spawnRectangle(input.mousePos, 20, 20);
+        if(input.lastClickedElement === canvas[0]){
+            sandbox.spawnRectangle(input.mousePos, 80, 80);
+        }
     }
 
     camera.update();

@@ -9,19 +9,23 @@ export class InputController{
         this.pressed = {};
         this.mousePos = {x: 0, y: 0};
         this.scrollDelta = 0;
+        this.lastClickedElement = null;
+        this.lastDroppedElement = null;
 
-        document.addEventListener("keydown", e => this.keys[e.key] = true);
-        document.addEventListener("keyup", e => this.keys[e.key] = false);
+        document.addEventListener("keydown", e => this.keys[e.code] = true);
+        document.addEventListener("keyup", e => this.keys[e.code] = false);
         document.addEventListener("wheel", e => this.scrollDelta = e.deltaY);
         
         document.addEventListener("mousedown", e=> {
             this.clicks[e.button] = true;
             this.pressed[e.button] = true;
+            this.lastClickedElement = e.target;
         });
 
         document.addEventListener("mouseup", e=> {
             this.clicks[e.button] = false;
             this.pressed[e.button] = false;
+            this.lastDroppedElement = e.target;
         });
 
         document.addEventListener("mousemove", e=> {
@@ -30,8 +34,8 @@ export class InputController{
         });
     }
 
-    isDown(key){
-        return this.keys[key];
+    isDown(code){
+        return this.keys[code];
     }
 
     isClicked(btn){
@@ -53,5 +57,6 @@ export class InputController{
     endFrame(){
         this.scrollDelta = 0;
         this.clicks = {}
+        this.lastClickedElement = null;
     }
 }
