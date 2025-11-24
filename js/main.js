@@ -5,7 +5,7 @@ import { Camera } from './components/world/Camera';
 import { Sandbox } from './components/world/Sandbox';
 import { InputController } from './components/input/InputController';
 import { GrabTool } from './components/tools/GrabTool';
-import { UIToolbox } from './components/ui/UIToolbox';
+import { UIToolbox } from "./components/ui/UIToolbox";
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;

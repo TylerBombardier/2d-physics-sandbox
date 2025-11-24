@@ -7,15 +7,12 @@
  */
 
 export class AbstractTool{
-    constructor(input,isSelected){
+    constructor(input){
         this.input = input;
-        this.isSelected = isSelected;
         if(this.constructor === AbstractTool){
             throw new Error("Cannot Instantiate an abstract class");
         }
     }
 
     onClick(){}
-
-    setActive(){}
 }

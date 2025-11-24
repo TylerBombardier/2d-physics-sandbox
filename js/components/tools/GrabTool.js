@@ -5,16 +5,12 @@
 import { AbstractTool } from "./AbstractTool";
 
 export class GrabTool extends AbstractTool{
-    constructor(input,isSelected,mouseConstraint){
-        super(input,isSelected);
+    constructor(input,mouseConstraint){
+        super(input);
         this.mouseConstraint = mouseConstraint;
     }
 
     onClick(){
 
-    }
-
-    setActive(bool){
-        this.isSelected = bool;
     }
 }
