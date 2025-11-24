@@ -53,30 +53,30 @@ export class Sandbox{
             {isStatic: true}
         );
 
-        let leftWall = Bodies.rectangle(
-            (window.innerWidth / 2) - (barrierDistance / 2) - (barrierThickness / 2),
-            window.innerHeight - (barrierDistance / 2),
-            barrierThickness,
-            barrierDistance,
-            { isStatic: true }
-        );
+        // let leftWall = Bodies.rectangle(
+        //     (window.innerWidth / 2) - (barrierDistance / 2) - (barrierThickness / 2),
+        //     window.innerHeight - (barrierDistance / 2),
+        //     barrierThickness,
+        //     barrierDistance,
+        //     { isStatic: true }
+        // );
 
-        let rightWall = Bodies.rectangle(
-            (window.innerWidth / 2) + (barrierDistance / 2) + (barrierThickness / 2),
-            window.innerHeight - (barrierDistance / 2),
-            barrierThickness,
-            barrierDistance,
-            { isStatic: true }
-        )
+        // let rightWall = Bodies.rectangle(
+        //     (window.innerWidth / 2) + (barrierDistance / 2) + (barrierThickness / 2),
+        //     window.innerHeight - (barrierDistance / 2),
+        //     barrierThickness,
+        //     barrierDistance,
+        //     { isStatic: true }
+        // )
 
-        let ceiling = Bodies.rectangle(
-            (window.innerWidth / 2),
-            window.innerHeight - (barrierThickness / 2) - (barrierDistance),
-            barrierDistance,
-            barrierThickness,
-            {isStatic: true}
-        );
+        // let ceiling = Bodies.rectangle(
+        //     (window.innerWidth / 2),
+        //     window.innerHeight - (barrierThickness / 2) - (barrierDistance),
+        //     barrierDistance,
+        //     barrierThickness,
+        //     {isStatic: true}
+        // );
 
-        Composite.add(this.world, [ground, leftWall, rightWall, ceiling]);
+        Composite.add(this.world, ground);
     }
 }
