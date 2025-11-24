@@ -6,10 +6,16 @@
  * onCancel()
  */
 
-class AbstractTool{
-    constructor(input){
+export class AbstractTool{
+    constructor(input,isSelected){
+        this.input = input;
+        this.isSelected = isSelected;
         if(this.constructor === AbstractTool){
             throw new Error("Cannot Instantiate an abstract class");
         }
     }
+
+    onClick(){}
+
+    setActive(){}
 }

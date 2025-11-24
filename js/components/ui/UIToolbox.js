@@ -1,7 +1,7 @@
 /**
  * Tracks the active tool, gives each tool an ID, add Tools, remove Tools.
  */
-export default class UIToolbox {
+export class UIToolbox {
     constructor() {
         this.tools = [];
         this.selectedTool = null; 
