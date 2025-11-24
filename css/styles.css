@@ -30,6 +30,8 @@ UI Panel Styling
     height: 80px;
     background: lightgrey;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 #left-ui-panel.closed{
