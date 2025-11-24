@@ -5,3 +5,11 @@
  * onRelease()
  * onCancel()
  */
+
+class AbstractTool{
+    constructor(input){
+        if(this.constructor === AbstractTool){
+            throw new Error("Cannot Instantiate an abstract class");
+        }
+    }
+}
