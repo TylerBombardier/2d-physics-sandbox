@@ -32,7 +32,7 @@ export default class UIToggle{
     open(){
         this.panelElement.classList.remove(this.closedClassName);
         this.panelElement.classList.add(this.openedClassNamed);
-        document.getElementById("arrow").innerHTML = "arrow_menu_close";
+        
         this.isOpen = true;
     }
 
@@ -40,7 +40,7 @@ export default class UIToggle{
     close(){
         this.panelElement.classList.remove(this.openedClassNamed);
         this.panelElement.classList.add(this.closedClassName);
-        document.getElementById("arrow").innerHTML = "arrow_menu_open";
+        
         this.isOpen = false;
     }
 

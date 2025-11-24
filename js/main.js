@@ -13,6 +13,7 @@ let engine = Engine.create(); //Engine creation
 const sceneContainer = document.getElementById("sim-area");
 const canvas = document.getElementsByTagName("canvas");
 const bounds = sceneContainer.getBoundingClientRect();
+const handle = document.getElementById("ui-handle");
 
 let render = Render.create({
 element: sceneContainer,
@@ -62,6 +63,15 @@ function updateGame(){
         if(input.lastClickedElement === canvas[0]){
             sandbox.spawnRectangle(input.mousePos, 80, 80);
         }
+    }
+
+    if(input.lastClickedElement === handle){
+        if(uiToggle.isOpen){
+            document.getElementById("arrow").innerHTML = "arrow_menu_close";
+        } else {
+            document.getElementById("arrow").innerHTML = "arrow_menu_open";
+        }
+        
     }
 
     camera.update();
