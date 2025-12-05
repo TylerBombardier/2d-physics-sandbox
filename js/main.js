@@ -60,7 +60,7 @@ sandbox.spawnRectangle({x: 100, y: 100},100,100);
 
 let toolManager = new ToolManager();
 
-let grabTool = new GrabTool(input,mouseConstraint);
+let grabTool = new GrabTool(mouseConstraint);
 
 toolManager.registerTool("grab", grabTool);
 toolManager.setTool("grab");

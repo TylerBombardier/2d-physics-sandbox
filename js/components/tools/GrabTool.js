@@ -5,8 +5,7 @@
 import { AbstractTool } from "./AbstractTool";
 
 export class GrabTool extends AbstractTool{
-    constructor(input,mouseConstraint){
-        super(input);
+    constructor(mouseConstraint){
         this.mouseConstraint = mouseConstraint;
     }
 
