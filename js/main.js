@@ -4,8 +4,6 @@ import UIToggle from './components/ui/UIToggle';
 import { Camera } from './components/world/Camera';
 import { Sandbox } from './components/world/Sandbox';
 import { InputController } from './components/input/InputController';
-import { GrabTool } from './components/tools/GrabTool';
-import { ToolManager } from './components/tools/ToolManager';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
@@ -58,12 +56,7 @@ let sandbox = new Sandbox(engine,camera);
 
 sandbox.spawnRectangle({x: 100, y: 100},100,100);
 
-let toolManager = new ToolManager();
-
 let grabTool = new GrabTool(mouseConstraint);
-
-toolManager.registerTool("grab", grabTool);
-toolManager.setTool("grab");
 
 sandbox.spawnBarriers();
 
@@ -93,11 +86,6 @@ function updateGame(){
         }
         
     }
-
-    let tool = toolManager.getActiveTool();
-
-    if (input.isClicked(0))  tool?.onClick();
-    if (input.isDown(0))     tool?.onDrag();
 
     camera.update();
     input.endFrame();
