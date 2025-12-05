@@ -29,14 +29,16 @@ options: {
 });
 
 let mouseConstraint = MouseConstraint.create(engine, {
-        mouse: Mouse.create(render.canvas),
-        constraint: {
-            stiffness: 0.2,
-            render: {
-                visible: false
-            }
-        }
-    });
+    mouse: Mouse.create(render.canvas),
+    constraint: {
+        render: {
+            visible: false,
+        },
+        stiffness: 0.2,
+    }
+});
+Matter.World.add(engine.world, mouseConstraint);
+
 
 Render.run(render);
 Render.setPixelRatio(render, window.devicePixelRatio); 
@@ -55,8 +57,6 @@ let camera = new Camera(render);
 let sandbox = new Sandbox(engine,camera);
 
 sandbox.spawnRectangle({x: 100, y: 100},100,100);
-
-let grabTool = new GrabTool(mouseConstraint);
 
 sandbox.spawnBarriers();
 
@@ -86,8 +86,15 @@ function updateGame(){
         }
         
     }
-
     camera.update();
+
+    let mouse = mouseConstraint.mouse;
+    let scaleX = (render.bounds.max.x - render.bounds.min.x) / render.canvas.width;
+    let scaleY = (render.bounds.max.y - render.bounds.min.y) / render.canvas.height;
+    
+    Mouse.setScale(mouse, { x: scaleX, y: scaleY });
+    Mouse.setOffset(mouse, render.bounds.min);
+
     input.endFrame();
 }
 
