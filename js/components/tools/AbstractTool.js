@@ -14,5 +14,11 @@ export class AbstractTool{
         }
     }
 
+    enable(){}
+    disable(){}
+
     onClick(){}
+    onDrag(){}
+    onRelease(){}
+
 }

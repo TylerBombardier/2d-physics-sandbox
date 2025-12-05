@@ -5,7 +5,7 @@ import { Camera } from './components/world/Camera';
 import { Sandbox } from './components/world/Sandbox';
 import { InputController } from './components/input/InputController';
 import { GrabTool } from './components/tools/GrabTool';
-import { UIToolbox } from "./components/ui/UIToolbox";
+import { ToolManager } from './components/tools/ToolManager';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
@@ -49,10 +49,6 @@ Runner.run(runner, engine);
 
 let input = new InputController();
 
-let grabTool = new GrabTool(input,mouseConstraint);
-
-let uiToolbox = new UIToolbox();
-
 //Handles toggling the opening and closing of the UI
 let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
 
@@ -60,9 +56,16 @@ let camera = new Camera(render);
 
 let sandbox = new Sandbox(engine,camera);
 
-sandbox.spawnBarriers();
+sandbox.spawnRectangle({x: 100, y: 100},100,100);
 
-sandbox.spawnRectangle({x: 0, y:0}, 80, 80);
+let toolManager = new ToolManager();
+
+let grabTool = new GrabTool(input,mouseConstraint);
+
+toolManager.registerTool("grab", grabTool);
+toolManager.setTool("grab");
+
+sandbox.spawnBarriers();
 
 function updateGame(){
     let panSpeed = 20;
@@ -90,6 +93,11 @@ function updateGame(){
         }
         
     }
+
+    let tool = toolManager.getActiveTool();
+
+    if (input.isClicked(0))  tool?.onClick();
+    if (input.isDown(0))     tool?.onDrag();
 
     camera.update();
     input.endFrame();

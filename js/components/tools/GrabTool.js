@@ -10,7 +10,15 @@ export class GrabTool extends AbstractTool{
         this.mouseConstraint = mouseConstraint;
     }
 
-    onClick(){
+    enable() {
+        this.mouseConstraint.constraint.stiffness = 0.9;
+    }
 
+    disable() {
+        this.mouseConstraint.constraint.stiffness = 0;
+    }
+
+    onClick() {
+        console.log("Grab!");
     }
 }
