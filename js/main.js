@@ -56,7 +56,9 @@ let camera = new Camera(render);
 
 let sandbox = new Sandbox(engine,camera);
 
-sandbox.spawnRectangle({x: 100, y: 100},100,100);
+for(let i = 0; i < 10; i++){
+    sandbox.spawnRectangle({x: 100, y: 100},100,100);
+}
 
 sandbox.spawnBarriers();
 

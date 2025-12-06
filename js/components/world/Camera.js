@@ -27,12 +27,6 @@ export class Camera{
         this.maxZoom = this.defaultZoomHeight * 5;
     }
 
-    getScaleVector(){
-        let scaleX = (render.bounds.max.x - render.bounds.min.x) / render.canvas.width;
-        let scaleY = (render.bounds.max.y - render.bounds.min.y) / render.canvas.height;
-        return {x:scaleX,y:scaleY}
-    }
-
     update(){
         this.handleSmoothPanning();
         this.handleSmoothZoom();
