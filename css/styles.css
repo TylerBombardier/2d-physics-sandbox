@@ -14,7 +14,7 @@ UI Panel Styling
     left: 0;
     width: 250px;
     height: 100%;
-    background-color: lightgrey;
+    background-color: #e0e0e0;
     z-index: 10;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -28,11 +28,18 @@ UI Panel Styling
     transform: translateY(-50%);
     width: 40px;
     height: 80px;
-    background: lightgrey;
+    background-color: #e0e0e0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: right;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#ui-content md-filled-tonal-icon-button {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    border-radius: 1000px;
 }
 
 #ui-content {

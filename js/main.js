@@ -6,17 +6,19 @@ import { Sandbox } from './components/world/Sandbox';
 import { InputController } from './components/input/InputController';
 import { ToolManager } from './components/tools/ToolManager';
 import { GrabTool } from './components/tools/GrabTool';
+import { ColorTool } from './components/tools/ColorTool';
+import { EraserTool } from './components/tools/EraserTool';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
-
-let engine = Engine.create(); //Engine creation
 
 const sceneContainer = document.getElementById("sim-area");
 const canvas = document.getElementsByTagName("canvas");
 const bounds = sceneContainer.getBoundingClientRect();
 const handle = document.getElementById("ui-handle");
 const arrow = document.getElementById("arrow");
+
+let engine = Engine.create();
 
 let render = Render.create({
 element: sceneContainer,
@@ -49,7 +51,13 @@ let sandbox = new Sandbox(engine,camera);
 let toolManager = new ToolManager();
 
 let grabTool = new GrabTool(engine,render,input);
-toolManager.register("grab",grabTool);
+let colorTool = new ColorTool();
+let eraserTool = new EraserTool();
+
+toolManager.register("grab", grabTool);
+toolManager.register("color", colorTool);
+toolManager.register("eraser", eraserTool);
+
 toolManager.setActive("grab");
 
 for(let i = 0; i < 10; i++){
@@ -94,3 +102,15 @@ function updateGame(){
 Matter.Events.on(runner, "afterUpdate", () => {
     updateGame();
 })
+
+document.getElementById("tool-grab").addEventListener("click", () => {
+    toolManager.setActive("grab");
+});
+
+document.getElementById("tool-color").addEventListener("click", () => {
+    toolManager.setActive("color");
+});
+
+document.getElementById("tool-eraser").addEventListener("click", () => {
+    toolManager.setActive("eraser");
+});

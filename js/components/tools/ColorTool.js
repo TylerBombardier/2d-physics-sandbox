@@ -2,6 +2,8 @@
  * Color shapes and joints
  */
 
-export class ColorTool extends Tool{
-    
+export class ColorTool{
+    activate() {}
+    deactivate() {}
+    update(camera) {}
 }

@@ -2,6 +2,8 @@
  * Tool for erasing objects from the sandbox
  */
 
-export class EraserTool extends Tool{
-    
+export class EraserTool{
+    activate() {}
+    deactivate() {}
+    update(camera) {}
 }
