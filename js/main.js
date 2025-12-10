@@ -58,8 +58,6 @@ toolManager.register("grab", grabTool);
 toolManager.register("color", colorTool);
 toolManager.register("eraser", eraserTool);
 
-toolManager.setActive("grab");
-
 for(let i = 0; i < 10; i++){
     sandbox.spawnRectangle({x: 100, y: 100},100,100);
 }
@@ -79,7 +77,7 @@ function updateGame(){
     if (scroll !== 0){
         scroll > 0 ? camera.zoomOut(zoomSpeed) : camera.zoomIn(zoomSpeed);
     }
-    
+
     camera.update();
 
     toolManager.update(camera);
@@ -106,3 +104,15 @@ document.getElementById("tool-eraser").addEventListener("click", () => {
 handle.addEventListener("click", () => {
     uiToggle.toggle();
 });
+
+document.addEventListener("DOMContentLoaded", e=>{
+    let tools = document.querySelectorAll(".tools");
+    console.log(tools);
+
+    tools.forEach(button => {
+        button.addEventListener("click",c=>{
+            tools.forEach(b => b.classList.remove("selected"));
+            button.classList.add("selected");
+        })
+    });
+})

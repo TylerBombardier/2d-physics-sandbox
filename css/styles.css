@@ -37,15 +37,6 @@ UI Panel Styling
     border-bottom-right-radius: 10px;
 }
 
-#ui-content md-filled-tonal-icon-button {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    border-radius: 1000px;
-}
-
-#ui-content {
-    padding: 10px;
-}
-
 #left-ui-panel.closed{
     transform: translateX(-250px);
 }
@@ -60,6 +51,29 @@ UI Panel Styling
 
 #left-ui-panel.open #arrow{
     transform: rotateZ(180deg);
+}
+
+/*
+UI Content
+*/
+
+#ui-content {
+    padding: 10px;
+}
+
+#ui-content md-filled-tonal-icon-button {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    border-radius: 1000px;
+    transition: box-shadow 0.2s ease;
+}
+
+md-filled-tonal-icon-button.selected {
+    --md-sys-color-secondary-container: gray;
+    box-shadow: none !important;
+}
+
+md-filled-tonal-icon-button.selected md-icon {
+    color: rgb(221, 221, 221);
 }
 
 /*
