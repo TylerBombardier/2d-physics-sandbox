@@ -4,6 +4,8 @@ import UIToggle from './components/ui/UIToggle';
 import { Camera } from './components/world/Camera';
 import { Sandbox } from './components/world/Sandbox';
 import { InputController } from './components/input/InputController';
+import { ToolManager } from './components/tools/ToolManager';
+import { GrabTool } from './components/tools/GrabTool';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
@@ -28,18 +30,6 @@ options: {
 }
 });
 
-let mouseConstraint = MouseConstraint.create(engine, {
-    mouse: Mouse.create(render.canvas),
-    constraint: {
-        render: {
-            visible: false,
-        },
-        stiffness: 0.2,
-    }
-});
-Matter.World.add(engine.world, mouseConstraint);
-
-
 Render.run(render);
 Render.setPixelRatio(render, window.devicePixelRatio); 
 
@@ -55,6 +45,12 @@ let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
 let camera = new Camera(render);
 
 let sandbox = new Sandbox(engine,camera);
+
+let toolManager = new ToolManager();
+
+let grabTool = new GrabTool(engine,render,input);
+toolManager.register("grab",grabTool);
+toolManager.setActive("grab");
 
 for(let i = 0; i < 10; i++){
     sandbox.spawnRectangle({x: 100, y: 100},100,100);
@@ -90,12 +86,7 @@ function updateGame(){
     }
     camera.update();
 
-    let mouse = mouseConstraint.mouse;
-    let scaleX = (render.bounds.max.x - render.bounds.min.x) / render.canvas.width;
-    let scaleY = (render.bounds.max.y - render.bounds.min.y) / render.canvas.height;
-    
-    Mouse.setScale(mouse, { x: scaleX, y: scaleY });
-    Mouse.setOffset(mouse, render.bounds.min);
+    toolManager.update(camera);
 
     input.endFrame();
 }

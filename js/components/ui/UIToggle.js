@@ -38,7 +38,7 @@ export default class UIToggle{
 
     //Close Panel
     close(){
-        this.panelElement.classList.remove(this.openedClassNamed);
+        this.panelElement.classList.remove(this.openedClassName);
         this.panelElement.classList.add(this.closedClassName);
         
         this.isOpen = false;
