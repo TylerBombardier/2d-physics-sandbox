@@ -50,6 +50,18 @@ UI Panel Styling
     transform: translateX(-250px);
 }
 
+#arrow{
+    transition: transform 0.3s ease;
+}
+
+#left-ui-panel.closed #arrow{
+    transform: rotateZ(0deg);
+}
+
+#left-ui-panel.open #arrow{
+    transform: rotateZ(180deg);
+}
+
 /*
 Sim Area Styling
 */

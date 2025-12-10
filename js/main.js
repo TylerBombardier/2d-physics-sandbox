@@ -79,19 +79,7 @@ function updateGame(){
     if (scroll !== 0){
         scroll > 0 ? camera.zoomOut(zoomSpeed) : camera.zoomIn(zoomSpeed);
     }
-
-    if(input.isClicked(0)){
-
-    }
-
-    if(arrow.closest("div") == handle){
-        if(uiToggle.isOpen){
-            document.getElementById("arrow").innerHTML = "arrow_menu_close";
-        } else {
-            document.getElementById("arrow").innerHTML = "arrow_menu_open";
-        }
-        
-    }
+    
     camera.update();
 
     toolManager.update(camera);
@@ -113,4 +101,8 @@ document.getElementById("tool-color").addEventListener("click", () => {
 
 document.getElementById("tool-eraser").addEventListener("click", () => {
     toolManager.setActive("eraser");
+});
+
+handle.addEventListener("click", () => {
+    uiToggle.toggle();
 });
