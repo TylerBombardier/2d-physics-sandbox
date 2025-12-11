@@ -77,6 +77,14 @@ md-filled-tonal-icon-button.selected md-icon {
 }
 
 /*
+Tool Options Styling
+*/
+
+#ui-tool-options{
+    padding: 10px;
+}
+
+/*
 Sim Area Styling
 */
 

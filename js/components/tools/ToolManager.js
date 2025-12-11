@@ -17,8 +17,9 @@ export class ToolManager{
 
         this.active = name;
 
-        if (this.tools[name]) {
-            this.tools[name].activate();
+        let tool = this.tools[name];
+        if (tool) {
+            tool.activate();
         }
     }
 

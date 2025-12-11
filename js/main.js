@@ -8,6 +8,7 @@ import { ToolManager } from './components/tools/ToolManager';
 import { GrabTool } from './components/tools/GrabTool';
 import { ColorTool } from './components/tools/ColorTool';
 import { EraserTool } from './components/tools/EraserTool';
+import { ToolOptionsManager} from './components/ui/ToolOptionsManager';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
@@ -89,23 +90,29 @@ Matter.Events.on(runner, "afterUpdate", () => {
     updateGame();
 })
 
-document.getElementById("tool-grab").addEventListener("click", () => {
-    toolManager.setActive("grab");
-});
+document.addEventListener("DOMContentLoaded",b=>{
+    let toolOptionsManager = new ToolOptionsManager("ui-tool-options");
 
-document.getElementById("tool-color").addEventListener("click", () => {
-    toolManager.setActive("color");
-});
+    document.getElementById("tool-grab").addEventListener("click", () => {
+        toolManager.setActive("grab");
+        toolOptionsManager.loadTemplate("ui-grab");
+    });
 
-document.getElementById("tool-eraser").addEventListener("click", () => {
-    toolManager.setActive("eraser");
-});
+    document.getElementById("tool-color").addEventListener("click", () => {
+        toolManager.setActive("color");
+        toolOptionsManager.loadTemplate("ui-color");
+    });
 
-handle.addEventListener("click", () => {
-    uiToggle.toggle();
-});
+    document.getElementById("tool-eraser").addEventListener("click", () => {
+        toolManager.setActive("eraser");
+        toolOptionsManager.loadTemplate("ui-eraser");
+    });
 
-document.addEventListener("DOMContentLoaded", e=>{
+    handle.addEventListener("click", () => {
+        uiToggle.toggle();
+    });
+
+
     let tools = document.querySelectorAll(".tools");
     console.log(tools);
 
@@ -116,3 +123,4 @@ document.addEventListener("DOMContentLoaded", e=>{
         })
     });
 })
+
