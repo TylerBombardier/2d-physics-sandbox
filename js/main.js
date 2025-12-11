@@ -95,17 +95,17 @@ document.addEventListener("DOMContentLoaded",b=>{
 
     document.getElementById("tool-grab").addEventListener("click", () => {
         toolManager.setActive("grab");
-        toolOptionsManager.loadTemplate("ui-grab");
+        toolOptionsManager.showTool("ui-grab");
     });
 
     document.getElementById("tool-color").addEventListener("click", () => {
         toolManager.setActive("color");
-        toolOptionsManager.loadTemplate("ui-color");
+        toolOptionsManager.showTool("ui-color");
     });
 
     document.getElementById("tool-eraser").addEventListener("click", () => {
         toolManager.setActive("eraser");
-        toolOptionsManager.loadTemplate("ui-eraser");
+        toolOptionsManager.showTool("ui-eraser");
     });
 
     handle.addEventListener("click", () => {

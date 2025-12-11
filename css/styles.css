@@ -84,6 +84,10 @@ Tool Options Styling
     padding: 10px;
 }
 
+.tool-panel.hidden{
+    display: none;
+}
+
 /*
 Sim Area Styling
 */

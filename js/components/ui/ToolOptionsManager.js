@@ -1,19 +1,12 @@
-export class ToolOptionsManager{
-    constructor(panelId){
-        this.panel = document.getElementById(panelId);
-    }
+export class ToolOptionsManager {
+  constructor(panelId) {
+    this.panel = document.getElementById(panelId);
+  }
 
-    loadTemplate(id) {
-        this.clear();
-        let template = document.getElementById(id);
-        console.log(template);
-        if (!template) return;
+  showTool(toolId) {
+    this.panel.querySelectorAll('.tool-panel').forEach(panel => panel.classList.add('hidden'));
 
-        let clone = template.content.cloneNode(true);
-        this.panel.appendChild(clone);
-    }
-
-    clear() {
-        this.panel.innerHTML = "";
-    }
+    let selected = this.panel.querySelector(`#${toolId}`);
+    if (selected) selected.classList.remove('hidden');
+  }
 }
