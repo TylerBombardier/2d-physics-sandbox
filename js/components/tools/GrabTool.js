@@ -38,7 +38,7 @@ export class GrabTool{
         }
     }
 
-    update(camera) {
+    update() {
         if (!this.enabled) return;
 
         let bounds = this.render.bounds;

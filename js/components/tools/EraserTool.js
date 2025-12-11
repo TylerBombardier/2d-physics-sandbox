@@ -3,7 +3,20 @@
  */
 
 export class EraserTool{
-    activate() {}
-    deactivate() {}
-    update(camera) {}
+    constructor(engine, render, input){
+        this.engine = engine;
+        this.render = render;
+        this.input = input;
+    }
+
+    activate() {
+
+    }
+    deactivate() {
+
+    }
+    
+    update() {
+
+    }
 }

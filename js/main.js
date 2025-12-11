@@ -51,7 +51,7 @@ let sandbox = new Sandbox(engine,camera);
 let toolManager = new ToolManager();
 
 let grabTool = new GrabTool(engine,render,input);
-let colorTool = new ColorTool();
+let colorTool = new ColorTool(engine,render,input,sandbox);
 let eraserTool = new EraserTool();
 
 toolManager.register("grab", grabTool);
