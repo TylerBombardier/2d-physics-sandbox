@@ -1,4 +1,4 @@
-export class ToolOptionsManager {
+export class ToolOptionsController {
   constructor(panelId) {
     this.panel = document.getElementById(panelId);
   }

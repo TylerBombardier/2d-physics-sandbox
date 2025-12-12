@@ -1,14 +1,14 @@
 import Matter from 'matter-js';
 import "@material/web/all";
-import UIToggle from './components/ui/UIToggle';
-import { Camera } from './components/world/Camera';
-import { Sandbox } from './components/world/Sandbox';
-import { InputController } from './components/input/InputController';
-import { ToolManager } from './components/tools/ToolManager';
-import { GrabTool } from './components/tools/GrabTool';
-import { ColorTool } from './components/tools/ColorTool';
-import { EraserTool } from './components/tools/EraserTool';
-import { ToolOptionsManager} from './components/ui/ToolOptionsManager';
+import UIToggle from './ui/UIToggle';
+import { Camera } from './domain/Camera';
+import { Sandbox } from './domain/Sandbox';
+import { InputController } from './controllers/InputController';
+import { GrabTool } from './tools/GrabTool';
+import { ColorTool } from './tools/ColorTool';
+import { EraserTool } from './tools/EraserTool';
+import { ToolOptionsController } from './controllers/ToolOptionsController';
+import { ToolController } from './controllers/ToolController';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
@@ -49,15 +49,15 @@ let camera = new Camera(render);
 
 let sandbox = new Sandbox(engine,camera);
 
-let toolManager = new ToolManager();
+let toolController = new ToolController();
 
 let grabTool = new GrabTool(engine,render,input);
 let colorTool = new ColorTool(engine,render,input,sandbox);
 let eraserTool = new EraserTool(engine,render,input,sandbox);
 
-toolManager.register("grab", grabTool);
-toolManager.register("color", colorTool);
-toolManager.register("eraser", eraserTool);
+toolController.register("grab", grabTool);
+toolController.register("color", colorTool);
+toolController.register("eraser", eraserTool);
 
 for(let i = 0; i < 10; i++){
     sandbox.spawnRectangle({x: 100, y: 100},100,100);
@@ -82,7 +82,7 @@ function updateGame(){
 
     camera.update();
 
-    toolManager.update();
+    toolController.update();
 
     input.endFrame();
 }
@@ -95,21 +95,21 @@ Matter.Events.on(runner, "afterUpdate", () => {
 // Event Listeners for the User Interface
 
 document.addEventListener("DOMContentLoaded",b=>{
-    let toolOptionsManager = new ToolOptionsManager("ui-tool-options");
+    let toolOptionsController = new ToolOptionsController("ui-tool-options");
 
     document.getElementById("tool-grab").addEventListener("click", () => {
-        toolManager.setActive("grab");
-        toolOptionsManager.showTool("ui-grab");
+        toolController.setActive("grab");
+        toolOptionsController.showTool("ui-grab");
     });
 
     document.getElementById("tool-color").addEventListener("click", () => {
-        toolManager.setActive("color");
-        toolOptionsManager.showTool("ui-color");
+        toolController.setActive("color");
+        toolOptionsController.showTool("ui-color");
     });
 
     document.getElementById("tool-eraser").addEventListener("click", () => {
-        toolManager.setActive("eraser");
-        toolOptionsManager.showTool("ui-eraser");
+        toolController.setActive("eraser");
+        toolOptionsController.showTool("ui-eraser");
     });
 
     handle.addEventListener("click", () => {

@@ -1,4 +1,4 @@
-export class ToolManager{
+export class ToolController{
     constructor(){
         this.tools = {};
         this.active = null;
