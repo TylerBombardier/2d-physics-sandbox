@@ -65,6 +65,7 @@ for(let i = 0; i < 10; i++){
 
 sandbox.spawnBarriers();
 
+// This function is called for every simulation frame
 function updateGame(){
     let panSpeed = 20;
     let zoomSpeed = 100;
@@ -81,7 +82,7 @@ function updateGame(){
 
     camera.update();
 
-    toolManager.update(camera);
+    toolManager.update();
 
     input.endFrame();
 }
@@ -89,6 +90,9 @@ function updateGame(){
 Matter.Events.on(runner, "afterUpdate", () => {
     updateGame();
 })
+
+
+// Event Listeners for the User Interface
 
 document.addEventListener("DOMContentLoaded",b=>{
     let toolOptionsManager = new ToolOptionsManager("ui-tool-options");

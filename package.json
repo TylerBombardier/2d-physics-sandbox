@@ -6,8 +6,5 @@
     "@material/material-color-utilities": "^0.3.0",
     "@material/web": "^2.4.1",
     "matter-js": "^0.20.0"
-  },
-  "devDependencies": {
-    "vite": "^7.2.2"
   }
 }

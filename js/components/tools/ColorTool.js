@@ -46,7 +46,7 @@ export class ColorTool{
             }
 
             if(target){
-                if(target.isStatic || this.colorStatic){
+                if(!target.isStatic || this.colorStatic){
                     target.render.fillStyle = this.currentColor;
                     target.render.strokeStyle = this.currentColor;
                     console.log("Colored to ",this.currentColor,": ",target);
