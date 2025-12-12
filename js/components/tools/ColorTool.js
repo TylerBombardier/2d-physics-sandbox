@@ -13,6 +13,7 @@ export class ColorTool{
 
         this.enabled = false;
         this.currentColor = "#ff0000";
+        this.colorStatic = false;
     }
 
     activate() {
@@ -45,8 +46,11 @@ export class ColorTool{
             }
 
             if(target){
-                target.render.fillStyle = this.currentColor;
-                target.render.strokeStyle = this.currentColor;
+                if(target.isStatic || this.colorStatic){
+                    target.render.fillStyle = this.currentColor;
+                    target.render.strokeStyle = this.currentColor;
+                    console.log("Colored to ",this.currentColor,": ",target);
+                }
             }
         }
     }

@@ -53,7 +53,7 @@ let toolManager = new ToolManager();
 
 let grabTool = new GrabTool(engine,render,input);
 let colorTool = new ColorTool(engine,render,input,sandbox);
-let eraserTool = new EraserTool();
+let eraserTool = new EraserTool(engine,render,input,sandbox);
 
 toolManager.register("grab", grabTool);
 toolManager.register("color", colorTool);

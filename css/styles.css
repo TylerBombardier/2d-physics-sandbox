@@ -67,15 +67,6 @@ UI Content
     transition: box-shadow 0.2s ease;
 }
 
-md-filled-tonal-icon-button.selected {
-    --md-sys-color-secondary-container: gray;
-    box-shadow: none !important;
-}
-
-md-filled-tonal-icon-button.selected md-icon {
-    color: rgb(221, 221, 221);
-}
-
 /*
 Tool Options Styling
 */

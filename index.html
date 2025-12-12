@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="js/main.js"></script>
     <link rel="stylesheet" href="css/stylereset.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes/light.css">
+    <link rel="stylesheet" href="css/themes/dark.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>Simulation Sandbox</title>
 </head>
@@ -28,10 +30,10 @@
                 <div id="ui-tool-options">
                     <div id="ui-grab" class="tool-panel hidden">
                         <label>Grab Radius</label><br>
-                        <input type="range" min="0" max="1" step="0.01" value="0.2">
+                        <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
 
                         <br><label>Grab Strength</label><br>
-                        <input type="range" min="0" max="1" step="0.01" value="0.2">
+                        <md-slider labeled min="0" max="1" step="0.01" value="0.2"></md-slider>
                     </div>
 
                     <div id="ui-color" class="tool-panel hidden">
@@ -39,12 +41,18 @@
                         <input type="color" id="brush-color" value="#ff0000">
 
                         <br><label>Brush Radius</label><br>
-                        <input type="range" min="0" max="1" step="0.01" value="0.2">
+                        <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
+
+                        <br><label>Color Static?</label><br>
+                        <md-switch></md-switch>
                     </div>
 
                     <div id="ui-eraser" class="tool-panel hidden">
                         <label>Eraser Radius</label><br>
-                        <input type="range" min="0" max="1" step="0.01" value="0.2">
+                        <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
+
+                        <br><label>Erase Static?</label><br>
+                        <md-switch></md-switch>
                     </div>
                 </div>
             </div>
