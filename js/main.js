@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded",b=>{
     let toolOptionsController = new ToolOptionsController("ui-tool-options");
 
     let toolBar = new ToolBar(toolController,toolOptionsController);
-    
+
     let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
 
 })

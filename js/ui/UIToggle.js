@@ -12,13 +12,15 @@ export default class UIToggle{
         //Checks if it already has the closed class name and adjusts class name ccordingly
         this.isOpen = !this.panelElement.classList.contains(this.closedClassName);
 
-        this.handle = document.getElementById("ui-handle");
-
         this.bind()
     }
 
     bind(){
-        this.handle.addEventListener("click", () => {
+        if(!this.toggleElement){
+            console.log("UIToggle: ToggleElement not found!");
+            return
+        }
+        this.toggleElement.addEventListener("click", () => {
             this.toggle();
         });
     }
