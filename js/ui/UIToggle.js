@@ -9,17 +9,18 @@ export default class UIToggle{
         this.closedClassName = closedClassName;
         this.openedClassName = openedClassName;
 
-        //Checks if it already has the closed class name and adjusts open value accordingly
+        //Checks if it already has the closed class name and adjusts class name ccordingly
         this.isOpen = !this.panelElement.classList.contains(this.closedClassName);
 
-        switch(this.isOpen){
-            case true:
-                this.open();
-                break;
-            case false:
-                this.close();
-                break;
-        }
+        this.handle = document.getElementById("ui-handle");
+
+        this.bind()
+    }
+
+    bind(){
+        this.handle.addEventListener("click", () => {
+            this.toggle();
+        });
     }
 
     //Open Panel

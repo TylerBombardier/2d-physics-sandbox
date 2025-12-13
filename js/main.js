@@ -9,6 +9,7 @@ import { ColorTool } from './tools/ColorTool';
 import { EraserTool } from './tools/EraserTool';
 import { ToolOptionsController } from './controllers/ToolOptionsController';
 import { ToolController } from './controllers/ToolController';
+import { ToolBar } from './ui/ToolBar';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
@@ -16,7 +17,6 @@ const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse
 const sceneContainer = document.getElementById("sim-area");
 const canvas = document.getElementsByTagName("canvas");
 const bounds = sceneContainer.getBoundingClientRect();
-const handle = document.getElementById("ui-handle");
 const arrow = document.getElementById("arrow");
 
 let engine = Engine.create();
@@ -41,9 +41,6 @@ let runner = Runner.create();
 Runner.run(runner, engine);
 
 let input = new InputController();
-
-//Handles toggling the opening and closing of the UI
-let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
 
 let camera = new Camera(render);
 
@@ -97,34 +94,9 @@ Matter.Events.on(runner, "afterUpdate", () => {
 document.addEventListener("DOMContentLoaded",b=>{
     let toolOptionsController = new ToolOptionsController("ui-tool-options");
 
-    document.getElementById("tool-grab").addEventListener("click", () => {
-        toolController.setActive("grab");
-        toolOptionsController.showTool("ui-grab");
-    });
+    let toolBar = new ToolBar(toolController,toolOptionsController);
+    
+    let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
 
-    document.getElementById("tool-color").addEventListener("click", () => {
-        toolController.setActive("color");
-        toolOptionsController.showTool("ui-color");
-    });
-
-    document.getElementById("tool-eraser").addEventListener("click", () => {
-        toolController.setActive("eraser");
-        toolOptionsController.showTool("ui-eraser");
-    });
-
-    handle.addEventListener("click", () => {
-        uiToggle.toggle();
-    });
-
-
-    let tools = document.querySelectorAll(".tools");
-    console.log(tools);
-
-    tools.forEach(button => {
-        button.addEventListener("click",c=>{
-            tools.forEach(b => b.classList.remove("selected"));
-            button.classList.add("selected");
-        })
-    });
 })
 
