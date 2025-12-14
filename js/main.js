@@ -10,6 +10,7 @@ import { EraserTool } from './tools/EraserTool';
 import { ToolOptionsController } from './controllers/ToolOptionsController';
 import { ToolController } from './controllers/ToolController';
 import { ToolBar } from './ui/ToolBar';
+import { initUI } from './ui/InitUI';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;
@@ -88,16 +89,5 @@ Matter.Events.on(runner, "afterUpdate", () => {
     updateGame();
 })
 
-
-// UI Handling
-
-document.addEventListener("DOMContentLoaded",b=>{
-    let toolOptionsController = new ToolOptionsController("ui-tool-options",toolController);
-
-    let toolBar = new ToolBar(toolController,toolOptionsController);
-
-    let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
-    
-
-})
+initUI(toolController);
 

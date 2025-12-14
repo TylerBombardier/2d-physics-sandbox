@@ -33,12 +33,12 @@
                         <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
 
                         <br><label>Grab Strength</label><br>
-                        <md-slider labeled min="0" max="1" step="0.01" value="0.2"></md-slider>
+                        <md-slider labeled min="0" max="1" step="0.01" value="1" data-bind="grabStiffness"></md-slider>
                     </div>
 
                     <div id="ui-color" class="tool-panel hidden">
                         <label>Brush Color</label><br>
-                        <input type="color" id="brush-color" value="#ff0000" data-bind="currentColor">
+                        <div id="color-picker" data-bind="currentColor"></div>
 
                         <br><label>Brush Radius</label><br>
                         <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
@@ -52,7 +52,7 @@
                         <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
 
                         <br><label>Erase Static?</label><br>
-                        <md-switch></md-switch>
+                        <md-switch data-bind="eraseStatic"></md-switch>
                     </div>
                 </div>
             </div>

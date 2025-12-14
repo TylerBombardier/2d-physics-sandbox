@@ -13,19 +13,19 @@ export class GrabTool{
         this.mouseConstraint = MouseConstraint.create(engine, {
             mouse: this.mouse,
             constraint: {
-                stiffness: 0.2,
+                stiffness: 1,
                 render: { visible: false }
             }
         });
 
-        this.mouseConstraint.constraint.stiffness = 0;
+        this.grabStiffness = 1;
+
         this.enabled = false;
     }
 
     activate() {
         if (!this.enabled) {
             this.enabled = true;
-            this.mouseConstraint.constraint.stiffness = 0.2;
             World.add(this.engine.world, this.mouseConstraint);
         }
     }
@@ -33,13 +33,14 @@ export class GrabTool{
     deactivate() {
         if (this.enabled) {
             this.enabled = false;
-            this.mouseConstraint.constraint.stiffness = 0;
             World.remove(this.engine.world, this.mouseConstraint);
         }
     }
 
     update() {
         if (!this.enabled) return;
+
+        this.mouseConstraint.constraint.stiffness = Math.pow(this.grabStiffness, 3) * 0.3
 
         let bounds = this.render.bounds;
 
