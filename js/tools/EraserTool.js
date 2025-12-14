@@ -1,5 +1,6 @@
 import Matter from 'matter-js';
 import { detectTarget } from '../components/DetectTarget';
+import { detectBodyAtPoint } from '../components/DetectTarget';
 
 /**
  * Tool for erasing objects from the sandbox
@@ -34,7 +35,7 @@ export class EraserTool{
 
             let bodies = Matter.Composite.allBodies(this.engine.world);
 
-            let target = detectTarget(bodies,worldPos);
+            let target = detectBodyAtPoint(bodies,worldPos);
 
             if(target){
                 if(!target.isStatic || this.eraseStatic){

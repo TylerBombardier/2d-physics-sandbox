@@ -1,6 +1,6 @@
 import Matter from "matter-js";
 
-export function detectTarget(bodies,worldPos){
+export function detectBodyAtPoint(bodies,worldPos){
     for(let body of bodies){
         if(
             Matter.Bounds.contains(body.bounds,worldPos) &&
