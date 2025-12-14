@@ -9,7 +9,6 @@ export class Camera{
         this.bounds = render.bounds;
         this.canvas = render.canvas;
         
-        this.aspectRatio = this.canvas.width / this.canvas.height;
         this.defaultZoomHeight = this.camHeight;
         this.deftaultZoomWidth = this.camWidth;
 
@@ -30,6 +29,10 @@ export class Camera{
     update(){
         this.handleSmoothPanning();
         this.handleSmoothZoom();
+    }
+
+    get aspectRatio() {
+        return this.render.options.width / this.render.options.height;
     }
 
     get camHeight(){

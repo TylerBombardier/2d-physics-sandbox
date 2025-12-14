@@ -34,6 +34,11 @@ options: {
 }
 });
 
+window.addEventListener("resize", () => {
+    let rect = sceneContainer.getBoundingClientRect();
+    Matter.Render.setSize(render, rect.width, rect.height);
+});
+
 Render.run(render);
 Render.setPixelRatio(render, window.devicePixelRatio); 
 

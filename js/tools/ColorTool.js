@@ -1,4 +1,5 @@
 import Matter from 'matter-js';
+import { detectBodyAtPoint } from '../components/DetectTarget';
 
 /**
  * Color shapes and joints
@@ -33,7 +34,7 @@ export class ColorTool{
 
             let bodies = Matter.Composite.allBodies(this.engine.world);
 
-            let target = detectTarget(bodies,worldPos);
+            let target = detectBodyAtPoint(bodies,worldPos);
 
             if(target){
                 if(!target.isStatic || this.colorStatic){

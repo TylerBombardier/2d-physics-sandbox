@@ -1,5 +1,4 @@
 import Matter from 'matter-js';
-import { detectTarget } from '../components/DetectTarget';
 import { detectBodyAtPoint } from '../components/DetectTarget';
 
 /**
