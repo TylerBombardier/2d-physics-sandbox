@@ -1,4 +1,5 @@
 import Matter from 'matter-js';
+import { detectTarget } from '../components/DetectTarget';
 
 /**
  * Tool for erasing objects from the sandbox
@@ -33,17 +34,7 @@ export class EraserTool{
 
             let bodies = Matter.Composite.allBodies(this.engine.world);
 
-            let target = null;
-
-            for(let body of bodies){
-                if(
-                    Matter.Bounds.contains(body.bounds,worldPos) &&
-                    Matter.Vertices.contains(body.vertices, worldPos)
-                ) {
-                    target = body;
-                    break;
-                }
-            }
+            let target = detectTarget(bodies,worldPos);
 
             if(target){
                 if(!target.isStatic || this.eraseStatic){
