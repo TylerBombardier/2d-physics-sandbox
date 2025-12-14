@@ -30,4 +30,8 @@ export class ToolController{
             }
         }
     }
+
+    getActiveTool(){
+        return this.tools[this.active];
+    }
 }

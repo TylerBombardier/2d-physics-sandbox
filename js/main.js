@@ -89,14 +89,15 @@ Matter.Events.on(runner, "afterUpdate", () => {
 })
 
 
-// Event Listeners for the User Interface
+// UI Handling
 
 document.addEventListener("DOMContentLoaded",b=>{
-    let toolOptionsController = new ToolOptionsController("ui-tool-options");
+    let toolOptionsController = new ToolOptionsController("ui-tool-options",toolController);
 
     let toolBar = new ToolBar(toolController,toolOptionsController);
 
     let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
+    
 
 })
 
