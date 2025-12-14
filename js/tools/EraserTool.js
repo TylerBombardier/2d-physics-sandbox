@@ -13,7 +13,7 @@ export class EraserTool{
 
         this.enabled = false;
 
-        this.removeStatic = false;
+        this.eraseStatic = false;
     }
 
     activate() {
@@ -46,7 +46,7 @@ export class EraserTool{
             }
 
             if(target){
-                if(!target.isStatic || this.removeStatic){
+                if(!target.isStatic || this.eraseStatic){
                     Matter.Composite.remove(this.engine.world, target);
                     console.log("Removed: ", target);
                 }
