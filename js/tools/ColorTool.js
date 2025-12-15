@@ -2,7 +2,7 @@ import Matter from 'matter-js';
 import { detectBodyAtPoint } from '../components/DetectTarget';
 
 /**
- * Color shapes and joints
+ * This is the Tool class that handles the logic for coloring bodies.
  */
 
 export class ColorTool{

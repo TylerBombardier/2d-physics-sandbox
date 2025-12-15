@@ -34,11 +34,6 @@ options: {
 }
 });
 
-window.addEventListener("resize", () => {
-    let rect = sceneContainer.getBoundingClientRect();
-    Matter.Render.setSize(render, rect.width, rect.height);
-});
-
 Render.run(render);
 Render.setPixelRatio(render, window.devicePixelRatio); 
 
@@ -61,6 +56,8 @@ let eraserTool = new EraserTool(engine,render,input,sandbox);
 toolController.register("grab", grabTool);
 toolController.register("color", colorTool);
 toolController.register("eraser", eraserTool);
+
+initUI(toolController);
 
 for(let i = 0; i < 10; i++){
     sandbox.spawnRectangle({x: 100, y: 100},100,100);
@@ -94,5 +91,7 @@ Matter.Events.on(runner, "afterUpdate", () => {
     updateGame();
 })
 
-initUI(toolController);
-
+window.addEventListener("resize", () => {
+    let rect = sceneContainer.getBoundingClientRect();
+    Matter.Render.setSize(render, rect.width, rect.height);
+});

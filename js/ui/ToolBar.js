@@ -1,3 +1,8 @@
+/**
+ * This class delegates which tool options are being displayed and which tool button is selected.
+ * 
+ * It makes sure the ToolController and ToolOptionsController are in sync
+ */
 export class ToolBar{
     constructor(toolController,toolOptionsController){
         this.toolController = toolController;
@@ -20,14 +25,14 @@ export class ToolBar{
         });
     }
 
-    select(tool, panel) {
-        this.toolController.setActive(tool);
-        this.toolOptionsController.showTool(panel);
+    select(toolName, toolOptionsID) {
+        this.toolController.setActive(toolName);
+        this.toolOptionsController.showToolOptions(toolOptionsID);
     }
 
-    highlight(activeButton) {
+    highlight(clickedButton) {
         this.tools.forEach(b => b.classList.remove("selected"));
-        activeButton.classList.add("selected");
+        clickedButton.classList.add("selected");
     }
 
 }

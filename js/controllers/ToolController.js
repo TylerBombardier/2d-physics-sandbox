@@ -1,3 +1,6 @@
+/**
+ * This class handles the organization of the Tool classes and handles which Tool is currently active.
+ */
 export class ToolController{
     constructor(){
         this.tools = {};
@@ -21,6 +24,12 @@ export class ToolController{
         if (tool) {
             tool.activate();
         }
+    }
+
+    setActiveToolOption(option,value){
+        let tool = this.tools[this.active];
+
+        tool[option] = value;
     }
 
     update(...args) {

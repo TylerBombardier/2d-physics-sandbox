@@ -1,3 +1,5 @@
+import Pickr from "@simonwep/pickr";
+
 /*
 Handles the Pickr color picker creation and life cycle
 */
