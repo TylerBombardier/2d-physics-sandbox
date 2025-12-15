@@ -5,7 +5,7 @@ import { ToolBar } from "./ToolBar";
 import UIToggle from "./UIToggle";
 
 /**
- * This class hnadles initalization of all 
+ * This class hnadles initalization of all UI related classes
  * @param {ToolController} toolController 
  */
 export function initUI(toolController){
@@ -16,5 +16,6 @@ export function initUI(toolController){
     let uiToggle = new UIToggle("#left-ui-panel","#ui-handle");
 
     let binder = new UIBinder(toolController);
-    binder.scan();
+
+    binder.scan(document.getElementById("ui-tool-options"));
 }

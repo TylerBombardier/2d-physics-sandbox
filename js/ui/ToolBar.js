@@ -13,6 +13,9 @@ export class ToolBar{
         this.bind();
     }
 
+    /**
+     * Applies the event listeners to click event listeners to each button
+     */
     bind() {
         document.getElementById("tool-grab").addEventListener("click", () => this.select("grab", "ui-grab"));
 
@@ -25,11 +28,20 @@ export class ToolBar{
         });
     }
 
+    /**
+     * Delegates setting the currently active tool and displaying the correct tool options
+     * @param {*} toolName 
+     * @param {*} toolOptionsID 
+     */
     select(toolName, toolOptionsID) {
         this.toolController.setActive(toolName);
         this.toolOptionsController.showToolOptions(toolOptionsID);
     }
 
+    /**
+     * Highlights the selected button
+     * @param {*} clickedButton 
+     */
     highlight(clickedButton) {
         this.tools.forEach(b => b.classList.remove("selected"));
         clickedButton.classList.add("selected");

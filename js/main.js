@@ -90,8 +90,3 @@ function updateGame(){
 Matter.Events.on(runner, "afterUpdate", () => {
     updateGame();
 })
-
-window.addEventListener("resize", () => {
-    let rect = sceneContainer.getBoundingClientRect();
-    Matter.Render.setSize(render, rect.width, rect.height);
-});

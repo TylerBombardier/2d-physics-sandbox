@@ -1,5 +1,5 @@
 /**
- * Handles the open and closed status of a UI panel
+ * Handles the open and closed status of the UI panel
  */
 export default class UIToggle{
 
@@ -15,17 +15,21 @@ export default class UIToggle{
         this.bind()
     }
 
+    /**
+     * Applies the event listener for any clicks
+     */
     bind(){
         if(!this.toggleElement){
             console.log("UIToggle: ToggleElement not found!");
-            return
         }
         this.toggleElement.addEventListener("click", () => {
             this.toggle();
         });
     }
 
-    //Open Panel
+    /**
+     * Opens the panel
+     */
     open(){
         this.panelElement.classList.remove(this.closedClassName);
         this.panelElement.classList.add(this.openedClassName);
@@ -33,7 +37,9 @@ export default class UIToggle{
         this.isOpen = true;
     }
 
-    //Close Panel
+    /**
+     * CLoses the panel
+     */
     close(){
         this.panelElement.classList.remove(this.openedClassName);
         this.panelElement.classList.add(this.closedClassName);
@@ -41,7 +47,9 @@ export default class UIToggle{
         this.isOpen = false;
     }
 
-    //Toggle Panel open status
+    /**
+     * Toggles the panel's status
+     */
     toggle(){
         this.isOpen ? this.close() : this.open();
     }
