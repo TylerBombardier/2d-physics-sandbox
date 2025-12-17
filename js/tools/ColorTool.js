@@ -13,10 +13,10 @@ export class ColorTool{
         this.sandbox = sandbox;
 
         this.enabled = false;
-        this.currentColor = "#ff0000";
+        this.currentColor = "black";
         this.colorStatic = false;
     }
-
+    
     activate() {
         this.enabled = true;
     }
