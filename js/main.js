@@ -1,8 +1,8 @@
 import Matter from 'matter-js';
 import "@material/web/all";
 import UIToggle from './ui/UIToggle';
-import { Camera } from './domain/Camera';
-import { Sandbox } from './domain/Sandbox';
+import { Camera } from './world/Camera';
+import { Sandbox } from './world/Sandbox';
 import { InputController } from './controllers/InputController';
 import { GrabTool } from './tools/GrabTool';
 import { ColorTool } from './tools/ColorTool';
@@ -11,6 +11,7 @@ import { ToolOptionsController } from './controllers/ToolOptionsController';
 import { ToolController } from './controllers/ToolController';
 import { ToolBar } from './ui/ToolBar';
 import { initUI } from './ui/InitUI';
+import { WorldGrid } from './world/WorldGrid';
 
 //Destructuring to extract specific modules
 const { Engine, Render, Runner, Bodies, World, Composite, MouseConstraint, Mouse} = Matter;

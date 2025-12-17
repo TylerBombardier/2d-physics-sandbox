@@ -30,7 +30,17 @@ export class Sandbox{
     }
 
     // Converts world coordinates into canvas cordinates
-    worldToScreen(worldCords){
+    worldToScreen(worldCoords) {
+        let bounds = this.camera.bounds;
+        let canvas = this.camera.canvas.getBoundingClientRect();
+
+        let scaleX = canvas.width / (bounds.max.x - bounds.min.x);
+        let scaleY = canvas.height / (bounds.max.y - bounds.min.y);
+
+        return {
+            x: (worldCoords.x - bounds.min.x) * scaleX,
+            y: (worldCoords.y - bounds.min.y) * scaleY
+        };
     }
 
     // Spawns a rectangle
