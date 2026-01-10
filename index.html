@@ -29,30 +29,44 @@
             
                 <div id="ui-tool-options">
                     <div id="ui-grab" class="tool-panel hidden">
-                        <label>Grab Radius</label><br>
-                        <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
+                        <div class="option-card">
+                            <label>Grab Radius</label>
+                            <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
+                        </div>
 
-                        <br><label>Grab Strength</label><br>
-                        <md-slider labeled min="0" max="1" step="0.01" value="1" data-bind="grabStiffness"></md-slider>
+                        <div class="option-card">
+                            <br><label>Grab Strength</label>
+                            <md-slider labeled min="0" max="1" step="0.01" value="1" data-bind="grabStiffness"></md-slider>
+                        </div>
                     </div>
 
                     <div id="ui-color" class="tool-panel hidden">
-                        <label>Brush Color</label><br>
-                        <input type="color" id="color-picker" data-bind="currentColor"></input>
-
-                        <br><label>Brush Radius</label><br>
-                        <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
-
-                        <br><label>Color Static?</label><br>
-                        <md-switch data-bind="colorStatic"></md-switch>
+                        <div class="option-card">
+                            <label>Brush Color</label><br>
+                            <input type="color" id="color-picker" data-bind="currentColor"></input>
+                        </div>
+                        <div class="option-card">
+                            <br><label>Brush Radius</label><br>
+                            <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
+                        </div>
+                        <div class="option-card">
+                            <br><label>Color Static?</label><br>
+                            <md-switch data-bind="colorStatic"></md-switch>
+                        </div>
                     </div>
 
                     <div id="ui-eraser" class="tool-panel hidden">
-                        <label>Eraser Radius</label><br>
-                        <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
+                        <div class="option-card">
+                            <label>Eraser Radius</label><br>
+                            <md-slider labeled min="0" max="1" step="0.01" value="0"></md-slider>
+                        </div>
+                        <div class="option-card">
+                            <br><label>Erase Static?</label><br>
+                            <md-switch data-bind="eraseStatic"></md-switch>
+                        </div>
+                        
 
-                        <br><label>Erase Static?</label><br>
-                        <md-switch data-bind="eraseStatic"></md-switch>
+                        
                     </div>
                 </div>
             </div>

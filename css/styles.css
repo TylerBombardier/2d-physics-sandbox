@@ -83,6 +83,34 @@ Tool Options Styling
     display: none;
 }
 
+.option-card{
+    margin: 3px;
+    padding: 3px 15px;
+    border-radius: 15px;
+    border: grey solid 3px;
+}
+
+/*
+Color Picker Styling
+*/
+
+input[type='color'] {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 300px;
+    width: 40px;
+    height: 40px;
+}
+
+input[type='color']::-webkit-color-swatch {
+    border-radius: 300px;
+}
+
+input[type='color']:hover {
+    border-color: rgba(128, 128, 128, 0.45);
+    background-color: rgba(128, 128, 128, 0.45);
+}
+
 /*
 Sim Area Styling
 */
